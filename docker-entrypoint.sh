@@ -41,7 +41,7 @@ fi
 
 # Write myid only if it doesn't exist
 if [[ ! -f "$ZOO_DATA_DIR/myid" ]]; then
-    echo "${HOSTNAME:-1}" > "$ZOO_DATA_DIR/myid"
+    echo "${HOSTNAME:-1}"|awk -F'-' '{print $2}' > "$ZOO_DATA_DIR/myid"
 fi
 
 exec "$@"
